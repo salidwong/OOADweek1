@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     Integer int_ins = 0;
     Float insperm ;
     Float totalprice ;
+    Integer m_interest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
         texttotal.setText("");
     }
 
+
+
     public Integer checkmonth(String s){
         if (s.equals("12 month")){
             int_ins = 12;
@@ -100,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public Float CalIns(Integer price, Integer down, Float interest){
-        Float difinterest = (price - down) * (interest/100);
+        Float difinterest = (price - down) * ((interest/100) * (int_ins/12));
         Float interestpr = (price - down) + difinterest;
         Float installments =  interestpr/int_ins;
 
@@ -108,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public Float CalTotal(Integer price, Integer down, Float interest){
-        Float res = down + (price - down) + (price - down) * (interest/100);
+        Float res = down + (price - down) + (price - down) * ((interest/100) * (int_ins/12));
         return res;
     }
 }
